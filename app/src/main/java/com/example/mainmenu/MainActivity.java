@@ -2,14 +2,15 @@ package com.example.mainmenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,20 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         ListView listViewItems = this.findViewById(R.id.listViewItems);
-        String[] items = {
-                this.getResources().getString(R.string.menu_item_play),
-                this.getResources().getString(R.string.menu_item_scores),
-                this.getResources().getString(R.string.menu_item_settings),
-                this.getResources().getString(R.string.menu_item_help)
-        };
+        String[] items = this.getResources().getStringArray(R.array.menu_items);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.menu_item, items);
 
         listViewItems.setAdapter(arrayAdapter);
 
-
-
-        // https://stackoverflow.com/questions/22422196/android-listview-listselector-not-working
 
         listViewItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -46,17 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 String strText = textView.getText().toString();
 
                 if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_play))) {
-                    startActivity(new Intent(MainActivity.this, GameActivity.class));
-
-                } else if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_help))) {
-                    startActivity(new Intent(MainActivity.this, HelpActivity.class));
-
-                } else if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_settings))) {
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                    Toast.makeText(MainActivity.this, "Play Game", Toast.LENGTH_SHORT).show();
 
                 } else if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_scores))) {
-                    startActivity(new Intent(MainActivity.this, ScoresActivity.class));
+                    Toast.makeText(MainActivity.this, "View Scores", Toast.LENGTH_SHORT).show();
 
+                } else if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_settings))) {
+                    Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                } else if (strText.equalsIgnoreCase(getResources().getString(R.string.menu_item_help))) {
+                    Toast.makeText(MainActivity.this, "Help", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -67,4 +58,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+
+        getMenuInflater().inflate(R.menu.gameoptions, menu);
+
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+
+        if (!item.getTitle().equals("buttomMenuOptions")) {
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+
+
+        return true;
+    }
+
 }

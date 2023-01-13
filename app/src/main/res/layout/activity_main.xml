@@ -53,8 +53,8 @@
         android:layout_below="@+id/relativeLayoutHeader"
         android:layout_marginHorizontal="20dp"
         android:divider="@drawable/divider"
-        android:listSelector="@drawable/button_press"
-        android:dividerHeight="5dp"/>
+        android:dividerHeight="5dp"
+        android:listSelector="@drawable/button_press" />
 
     <ImageView
         android:layout_width="match_parent"
