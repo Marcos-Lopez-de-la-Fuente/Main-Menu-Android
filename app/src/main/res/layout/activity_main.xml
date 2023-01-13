@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
 
@@ -23,9 +25,15 @@
             android:id="@+id/textViewHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/screen_title_size"
+            android:layout_centerInParent="true"
             android:layout_toEndOf="@+id/imageViewHeader"
-            android:text="@string/menu" />
+            android:shadowColor="@color/title_glow"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="5"
+            android:text="@string/menu"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/screen_title_size" />
 
         <ImageView
             android:id="@+id/imageViewSecondHeader"
@@ -42,13 +50,17 @@
         android:id="@+id/listViewItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayoutHeader" />
-
+        android:layout_below="@+id/relativeLayoutHeader"
+        android:layout_marginHorizontal="20dp"
+        android:divider="@drawable/divider"
+        android:listSelector="@drawable/button_press"
+        android:dividerHeight="5dp"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listViewItems"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-190dp"
         android:src="@drawable/earth" />
 
 
